@@ -17,7 +17,8 @@ if(!empty($_SESSION["shopping_cart"])) {
       if($_POST["code"] == $key){
       unset($_SESSION["shopping_cart"][$key]);
  $code= $_POST["code"];
-      $sql = "DELETE FROM cart WHERE code = '$code'";
+ $id=$_GET['id'];
+      $sql = "DELETE FROM cart WHERE code = '$code' AND Id='$id'";
       mysqli_query($conn,$sql);
       ?>
     <script>swal("Product removed!", "Product is removed from your cart", "error");</script>
@@ -35,7 +36,9 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
         $value['quantity'] = $_POST["quantity"];
         $quantity = $_POST["quantity"];
          $code= $_POST["code"];
-  $sql = "UPDATE `cart` SET `quantity`='$quantity' WHERE code = '$code' ";
+ $id=$_GET['id'];
+
+  $sql = "UPDATE `cart` SET `quantity`='$quantity' WHERE code = '$code' AND Id='$id'";
   mysqli_query($conn,$sql);
         break; // Stop the loop after we've found the product
     }
@@ -102,10 +105,11 @@ $total_price += ($product["price"]*$product["quantity"]);
 </tbody>
 </table>
 <br>
-<form action = "BookPayment.php">
+<a href= 'BookPayment.php?id=<?php echo $_GET['id'];?>'>
 <button type='submit' class='remove'>Proccede to checkout</button>
-</form>
+</a>
   <?php
+  
 }else{
 	echo "<h3>Your cart is empty!</h3>";
 	}

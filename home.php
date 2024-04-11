@@ -95,7 +95,7 @@
       max-width:200px;
     }
 
-  #menuToggle
+    #menuToggle
 {
   display: block;
   position: relative;
@@ -114,11 +114,12 @@
   color: #232323;
 
   transition: color 0.3s ease;
+
 }
 
 #menuToggle a:hover
 {
-  color: black;
+  color: #FFFFFF;
 }
 
 
@@ -130,9 +131,7 @@
   position: absolute;
   top: -7px;
   left: -5px;
-
   cursor: pointer;
-
   opacity: 0; /* hide this */
   z-index: 2; /* and place it over the hamburger */
 
@@ -150,13 +149,10 @@
   margin-bottom: 5px;
   position: relative;
 
-  background: white;
+  background: #ccc;
   border-radius: 3px;
-
   z-index: 1;
-
   transform-origin: 4px 0px;
-
   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
               background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
               opacity 0.55s ease;
@@ -180,7 +176,7 @@
 {
   opacity: 1;
   transform: rotate(45deg) translate(-2px, -1px);
-  background:white;
+  background:#ffffff;
 }
 
 /*
@@ -206,45 +202,37 @@
  */
 #menu
 {
+ 
   position: absolute;
-  width: 300px;
+  width:200px;
   margin: -100px 0 0 -50px;
-  padding: 50px;
   padding-top: 125px;
   background: #7E7474;
   list-style-type: none;
   -webkit-font-smoothing: antialiased;
-
-
+  /* to stop flickering of text in safari */
   transform-origin: 0% 0%;
   transform: translate(-100%, 0);
-
   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
-  min-height:750px;
+  min-height:1000px;
 }
 
 #menu li
 {
-  padding: 10px 0;
+  padding: 15px 0;
   font-size: 22px;
-  color: #FFFFFF;
+  color: #ffffff;
+
 }
 
+/*
+ * And let's slide it in from the left
+ */
 #menuToggle input:checked ~ ul
 {
-  transform: none;
-}
-#menu li:hover,
-#menu li:active {
-  background-color: initial;
-  background-position: 0 0;
-  color: #464646;
+  transform: none;
 }
 
-#menu li:active {
-  opacity: .5;
-
-}
 
 .start-10 {
   grid-row-start: 2;
@@ -276,21 +264,21 @@ width:110%;
         <span></span>
         <span></span>
         <span></span>
-
-        <ul id="menu">
-          <a href="Registeration.php"><li>Registeration</li></a>
-          <a href="Schedule.php"><li>Schedule</li></a>
-          <a href="BookStore.php"><li>Book store</li></a>
-          <a href="Location.php"><li>Location</li></a>
-          <a href="Grades.php"><li>Grades</li></a>
-          <a href="Grade_simulator.php"><li>Grade Simulator</li></a>
-          <a href="Attendance.php"><li>Attendance</li></a>
-          <a href="Review.php"><li>Review</li></a>
+     <ul id="menu">
+    
+          <a href='Registeration.php?id=<?php echo $_GET['id'];?>'><li>Registeration</li></a>
+          <a href='Schedule.php?id=<?php echo $_GET['id'];?>'><li>Schedule</li></a>
+          <a href='BookStore.php?id=<?php echo $_GET['id'];?>'><li>Book store</li></a>
+          <a href='Location.php?id=<?php echo $_GET['id'];?>'><li>Location</li></a>
+          <a href='Grades.php?id=<?php echo $_GET['id'];?>'><li>Grades</li></a>
+          <a href='Grade_simulator.php?id=<?php echo $_GET['id'];?>'><li>Grade Simulator</li></a>
+          <a href='Attendance.php?id=<?php echo $_GET['id'];?>'><li>Attendance</li></a>
+          <a href='Review.php?id=<?php echo $_GET['id'];?>'><li>Review</li></a>
 
         </ul>
       </div>
     </nav>
-    <img src="logo.jpeg" alt="logo">
+    <img src="logo.png" alt="logo">
   </header>
 
   <div class="part1">

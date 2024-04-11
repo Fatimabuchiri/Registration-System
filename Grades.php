@@ -30,21 +30,20 @@
              but hey, it's pure CSS magic.
              -->
              <ul id="menu">
-               <a href="Registeration.php"><li>Registeration</li></a>
-               <a href="payment.php"><li>Payment</li></a>
-               <a href="BookStore.php"><li>Book store</li></a>
-               <a href="Location.php"><li>Location</li></a>
-               <a href="Grades.php"><li>Grades</li></a>
-               <a href="Grade-simulator.php"><li>Grade Simulator</li></a>
-               <a href="Attendance.php"><li>Attendance</li></a>
-              <a href="review.php"><li>Review</li></a>
+             <a href='Registeration.php?id=<?php echo $_GET['id'];?>'><li>Registeration</li></a>
+          <a href='Schedule.php?id=<?php echo $_GET['id'];?>'><li>Schedule</li></a>
+          <a href='BookStore.php?id=<?php echo $_GET['id'];?>'><li>Book store</li></a>
+          <a href='Location.php?id=<?php echo $_GET['id'];?>'><li>Location</li></a>
+          <a href='Grade_simulator.php?id=<?php echo $_GET['id'];?>'><li>Grade Simulator</li></a>
+          <a href='Attendance.php?id=<?php echo $_GET['id'];?>'><li>Attendance</li></a>
+          <a href='Review.php?id=<?php echo $_GET['id'];?>'><li>Review</li></a>
 
 
              </ul>
            </div>
          </nav>
          <a href="home.php">
-         <img src="images/logo4.jpeg" alt="logo">
+         <img src="logo.png" alt="logo">
          </a>
        </header>
 
@@ -61,7 +60,8 @@
 							</tr>
 <?php
                 require('connection.php');
-                $sql = "SELECT code,credit,grade,status,CGPA FROM grades WHERE Id = '202001458'";
+                $id=$_GET['id'];
+                $sql = "SELECT code,credit,grade,status,CGPA FROM grades WHERE Id = '$id'";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                   $passed = 0;

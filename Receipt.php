@@ -88,7 +88,8 @@
                 <td class="tableitem"><p class="itemtext"> COURSES :</p></td>
 <?php
               require('connection.php');
-              $sql = "SELECT Subject FROM schedule WHERE Id='202001458'";
+              $id=$_GET['id'];
+              $sql = "SELECT Subject FROM schedule WHERE Id='$id'";
               $result = $conn->query($sql);
               if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {

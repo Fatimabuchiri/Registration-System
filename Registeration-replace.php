@@ -277,17 +277,23 @@ td{
         <span></span>
         <span></span>
         <span></span>
+
+        <?php 
+        require('connection.php');
+        $id=$_GET['id'];
+    $sql = "SELECT * FROM schedule where Id2='$id'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    $id2=$row['Id'];
+    ?>
         <ul id="menu">
-          <a href="Registeration.php"><li>Registeration</li></a>
-          <a href="Schedule.php"><li>Schedule</li></a>
-          <a href="#"><li>Payment</li></a>
-          <a href="#"><li>Book store</li></a>
-          <a href="Location.php"><li>Location</li></a>
-          <a href="#"><li>Grades</li></a>
-          <a href="#"><li>Grade Simulator</li></a>
-          <a href="#"><li>Receipt</li></a>
-          <a href="#"><li>Attendance</li></a>
-            <a href="#"><li>Review</li></a>
+        <a href='Schedule.php?id=<?php echo $id2;?>'><li>Schedule</li></a>
+          <a href='BookStore.php?id=<?php echo $id2;?>'><li>Book store</li></a>
+          <a href='Location.php?id=<?php echo $id2;?>'><li>Location</li></a>
+          <a href='Grades.php?id=<?php echo $id2;?>'><li>Grades</li></a>
+          <a href='Grade_simulator.php?id=<?php echo $id2;?>'><li>Grade Simulator</li></a>
+          <a href='Attendance.php?id=<?php echo $id2;?>'><li>Attendance</li></a>
+          <a href='Review.php?id=<?php echo $id2;?>'><li>Review</li></a>
         </ul>
       </div>
     </nav>
@@ -298,7 +304,7 @@ td{
       <label for="Reg">Course code</label>
   <?php
   require('connection.php');
-  $sql = "SELECT code FROM registeration";
+  $sql = "SELECT code FROM courses";
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
     echo "<select name='course'>";
@@ -313,10 +319,10 @@ td{
   <select name="Sec">
        <option value="">--- Choose a section ---</option>
        <?php
-       $sql = "SELECT Sec FROM registeration";
+       $sql = "SELECT sec FROM courses";
        $result = $conn->query($sql);
         while($row = $result->fetch_assoc()) {
-        $Sec = $row["Sec"];
+        $Sec = $row["sec"];
         ?>
         <option><?php  echo $Sec?></option>
         <?php
@@ -332,15 +338,15 @@ if(isset($_POST['btn'])){
   $excuted = "FALSE";
           $selected=$_POST['course'];
           $selected2=$_POST['Sec'];
-          $sql = "SELECT Sec,code,doctor,Day,time2,exam,seats FROM registeration WHERE code='$selected' AND Sec='$selected2'";
+          $sql = "SELECT * FROM courses WHERE code='$selected' AND Sec='$selected2'";
           $result = $conn->query($sql);
           while($row = $result->fetch_assoc()){
             $code=$row["code"];
             $doctor=$row["doctor"];
-            $Day=$row["Day"];
-            $time2=$row["time2"];
-            $Sec = $row["Sec"];
-            $exam = $row["exam"];
+            $Day=$row["day1"];
+            $time2=$row["time1"];
+            $Sec = $row["sec"];
+            $location1 = $row["location1"];
             $seats = $row["seats"];
           ?>
           <div class="TheTable">
@@ -358,7 +364,7 @@ if(isset($_POST['btn'])){
           <td><?php echo $doctor ?></td>
           <td><?php echo $Day ?></td>
           <td><?php echo $time2 ?></td>
-          <td><?php echo $exam ?></td>
+          <td><?php echo $location1 ?></td>
           <td><?php echo $seats ?></td>
         </tr>
       </table>
@@ -366,7 +372,11 @@ if(isset($_POST['btn'])){
 
         <?php
       }
-        $sql = "SELECT Subject FROM schedule WHERE Subject = '$selected'";
+      $sql = "SELECT * FROM schedule where Id2='$id'";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    $id2=$row['Id'];
+        $sql = "SELECT Subject FROM schedule WHERE Subject = '$selected' AND Id='$id2'";
         $result = $conn->query($sql);
         while($row = $result->fetch_assoc()){
           $Subject=$row["Subject"];
@@ -378,12 +388,12 @@ if(isset($_POST['btn'])){
                $excuted = "TRUE";
           }
         }
-        $sql = "SELECT * FROM registeration WHERE code='$selected' AND Sec='$selected2'";
+        $sql = "SELECT * FROM courses WHERE code='$selected' AND sec='$selected2'";
         $result = $conn->query($sql);
         while($row = $result->fetch_assoc()){
-          $Day = $row['Day'];
-          $time2=$row["time2"];
-          $Sec = $row["Sec"];
+          $Day = $row['day1'];
+          $time2=$row["time1"];
+          $Sec = $row["sec"];
           $code=$row["code"];
 
         $id = $_GET['id'];

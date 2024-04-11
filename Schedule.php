@@ -216,19 +216,17 @@
         <span></span>
         <span></span>
         <ul id="menu">
-          <a href="Registeration.php"><li>Registeration</li></a>
-          <a href="#"><li>Payment</li></a>
-          <a href="#"><li>Book store</li></a>
-          <a href="Location.php"><li>Location</li></a>
-          <a href="#"><li>Grades</li></a>
-          <a href="#"><li>Grade Simulator</li></a>
-          <a href="#"><li>Receipt</li></a>
-          <a href="#"><li>Attendance</li></a>
-            <a href="#"><li>Review</li></a>
+        <a href='Registeration.php?id=<?php echo $_GET['id'];?>'><li>Registeration</li></a>
+          <a href='BookStore.php?id=<?php echo $_GET['id'];?>'><li>Book store</li></a>
+          <a href='Location.php?id=<?php echo $_GET['id'];?>'><li>Location</li></a>
+          <a href='Grades.php?id=<?php echo $_GET['id'];?>'><li>Grades</li></a>
+          <a href='Grade_simulator.php?id=<?php echo $_GET['id'];?>'><li>Grade Simulator</li></a>
+          <a href='Attendance.php?id=<?php echo $_GET['id'];?>'><li>Attendance</li></a>
+          <a href='Review.php?id=<?php echo $_GET['id'];?>'><li>Review</li></a>
         </ul>
       </div>
     </nav>
-    <img src="logo.jpeg" alt="logo">
+    <a href='home.php?id=<?php echo $_GET['id'];?>'><img src="logo.png" alt="logo"></a>
   </header>
   <div class="schedule">
     <table class="schedule1">
@@ -241,13 +239,9 @@
         <tr>
           <?php
           require('connection.php');
-          if(isset($_GET['id'])){
-            $id = $_GET['id'];
-            $delete = mysqli_query($conn,"DELETE FROM schedule WHERE Id2 = '$id'");
-
-
-          }
-          $sql = "SELECT * FROM schedule WHERE Id='202001458'";
+        
+          $id=$_GET['id'];
+          $sql = "SELECT * FROM schedule WHERE Id='$id'";
           $result = $conn->query($sql);
             if ($result->num_rows > 0) {
               while($row = $result->fetch_assoc()) {
@@ -263,7 +257,7 @@
           <?php
           echo "<td><a href='Registeration-replace.php?id=".$row["Id2"]."'>Yes</a></td>";
 
-        echo "<td><a href='Schedule.php?id=".$row["Id2"]."' id='btn'><i class='fa-solid fa-trash-can fa-sm' style='color: #000000;''></i></a></td>
+        echo "<td><a href='Delete.php?id=".$row["Id2"]."' id='btn'><i class='fa-solid fa-trash-can fa-sm' style='color: #000000;''></i></a></td>
         </tr>";
 
       }
@@ -274,8 +268,10 @@
       <br>
       <br>
         <div class='pay'>
-          <form action = "payment.php">
-          <button class='Paying'>Procced to checkout</button>
+
+        <a href= 'payment.php?id=<?php echo $_GET['id'];?>'>
+<button type='submit' class='Paying'>Proccede to checkout</button>
+</a>
           </div>
 </form>
 

@@ -30,18 +30,19 @@
         <span></span>
 
         <ul id="menu">
-          <a href="Registeration.php"><li>Registeration</li></a>
-          <a href="BookStore.php"><li>Book store</li></a>
-          <a href="Location.php"><li>Location</li></a>
-          <a href="Grades.php"><li>Grades</li></a>
-          <a href="Grade-simulator.php"><li>Grade Simulator</li></a>
-          <a href="Attendance.php"><li>Attendance</li></a>
-         <a href="review.php"><li>Review</li></a>
-         <a href="receipt.php"><li>Riceipt</li></a>
+       
+        <a href='Registeration.php?id=<?php echo $_GET['id'];?>'><li>Registeration</li></a>
+          <a href='Schedule.php?id=<?php echo $_GET['id'];?>'><li>Schedule</li></a>
+          <a href='BookStore.php?id=<?php echo $_GET['id'];?>'><li>Book store</li></a>
+          <a href='Location.php?id=<?php echo $_GET['id'];?>'><li>Location</li></a>
+          <a href='Grades.php?id=<?php echo $_GET['id'];?>'><li>Grades</li></a>
+          <a href='Grade_simulator.php?id=<?php echo $_GET['id'];?>'><li>Grade Simulator</li></a>
+          <a href='Attendance.php?id=<?php echo $_GET['id'];?>'><li>Attendance</li></a>
+          <a href='Review.php?id=<?php echo $_GET['id'];?>'><li>Review</li></a>
         </ul>
       </div>
     </nav>
-    <img src="images/logo4.jpeg" alt="logo">
+    <img src=logo.png alt="logo">
   </header>
   <?php
   $name = $_POST["cardname"];
@@ -99,7 +100,8 @@ elseif(($year > $exp2) or ($month > $exp)){
 
 
   else{
-    header("Location:Receipt.php");
+    $id=$_GET['id'];
+    header('Location:Receipt.php?id='.$id);
   }
 }
    ?>

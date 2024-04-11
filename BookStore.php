@@ -41,16 +41,18 @@
         <span></span>
 
         <ul id="menu">
-          <a href="Registeration.php"><li>Registeration</li></a>
-          <a href="Location.php"><li>Location</li></a>
-          <a href="Grades.php"><li>Grades</li></a>
-          <a href="Grade-simulator.php"><li>Grade Simulator</li></a>
-          <a href="Attendance.php"><li>Attendance</li></a>
-         <a href="review.php"><li>Review</li></a>
+        <a href='Registeration.php?id=<?php echo $_GET['id'];?>'><li>Registeration</li></a>
+          <a href='Schedule.php?id=<?php echo $_GET['id'];?>'><li>Schedule</li></a>
+          <a href='BookStore.php?id=<?php echo $_GET['id'];?>'><li>Book store</li></a>
+          <a href='Location.php?id=<?php echo $_GET['id'];?>'><li>Location</li></a>
+          <a href='Grades.php?id=<?php echo $_GET['id'];?>'><li>Grades</li></a>
+          <a href='Grade_simulator.php?id=<?php echo $_GET['id'];?>'><li>Grade Simulator</li></a>
+          <a href='Attendance.php?id=<?php echo $_GET['id'];?>'><li>Attendance</li></a>
+          <a href='Review.php?id=<?php echo $_GET['id'];?>'><li>Review</li></a>
         </ul>
       </div>
     </nav>
-    <a href="home.php">
+    <a href='home.php?id=<?php echo $_GET['id'] ?>'>
     <img src="images/logo4.jpeg" alt="logo" style="max-height: 120px;
       max-width:200px" >
         </a>
@@ -86,7 +88,8 @@
 
   if(empty($_SESSION["shopping_cart"])) {
       $_SESSION["shopping_cart"] = $cartArray;
-      $sql = "INSERT INTO `cart`(`Id`, `code`, `book`, `price`, `quantity`) VALUES ('202001458','$code','$name','$price','1');";
+      $id=$_GET['id'];
+      $sql = "INSERT INTO `cart`(`Id`, `code`, `book`, `price`, `quantity`) VALUES ('$id','$code','$name','$price','1');";
       mysqli_query($conn,$sql);
       ?> <script> swal("Product added!", "Product is added to your cart", "success");</script>
       <?php
@@ -104,7 +107,8 @@
       $cartArray
       );
     //  $status = "<div class='box'>Product is added to your cart!</div>";
-    $sql = "INSERT INTO `cart`(`Id`, `code`, `book`, `price`, `quantity`) VALUES ('202001458','$code','$name','$price','1');";
+    $id=$_GET['id'];
+    $sql = "INSERT INTO `cart`(`Id`, `code`, `book`, `price`, `quantity`) VALUES ('$id','$code','$name','$price','1');";
     mysqli_query($conn,$sql);
     ?> <script> swal("Product added!", "Product is added to your cart", "success");</script>
     <?php
@@ -118,7 +122,7 @@
   $cart_count = count(array_keys($_SESSION["shopping_cart"]));
   ?>
   <div class="cart_div" style=" min-width:1000px; min-height:100px;">
-  <a href="cart.php"><i class="fa-solid fa-cart-shopping fa-bounce fa-2xl" style="color: #000000;"></i></a>
+  <a href='cart.php?id=<?php echo $_GET['id'];?>'><i class="fa-solid fa-cart-shopping fa-bounce fa-2xl" style="color: #000000;"></i></a>
   </div>
   <?php
   }

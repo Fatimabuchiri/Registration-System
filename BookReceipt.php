@@ -91,7 +91,8 @@
               </tr>
 <?php
               require('connection.php');
-              $sql = "SELECT book,price,quantity FROM cart WHERE Id='202001458'";
+              $id=$_GET['id'];
+              $sql = "SELECT book,price,quantity FROM cart WHERE Id='$id'";
               $result = $conn->query($sql);
               if ($result->num_rows > 0) {
                 $total = 0;
