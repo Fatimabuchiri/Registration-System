@@ -45,8 +45,7 @@
 
               require('connection.php');
             $date=date("l");
-            $id = $_GET['id'];
-            $sql = "SELECT code,sec,location1,time1,day1 FROM courses WHERE day1='$date' id='$id'";
+            $sql = "SELECT code,sec,location1,time1,day1 FROM courses WHERE day1='$date'";
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
       while($row = $result->fetch_assoc()) {
